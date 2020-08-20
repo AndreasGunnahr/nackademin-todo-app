@@ -8,7 +8,7 @@ var TodoSchema = new mongoose.Schema(
       required: [true, "Can't be blank"],
     },
 
-    text: {
+    description: {
       type: String,
       lowercase: true,
       required: [true, "Can't be blank"],
