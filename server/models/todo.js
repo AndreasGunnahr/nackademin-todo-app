@@ -30,6 +30,7 @@ TodoSchema.statics.findTodos = function (callback) {
 
 TodoSchema.statics.createTodo = function (todo, callback) {
   const newTodo = new this(todo);
+  console.log(newTodo);
   return newTodo.save(callback);
 };
 

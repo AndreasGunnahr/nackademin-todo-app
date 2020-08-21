@@ -9,6 +9,18 @@ export const textFont = css`
   font-family: "Raleway", sans-serif;
 `;
 
+export const Button = styled.button`
+  ${textFont};
+  font-size: 0.825rem;
+  padding: 0.5rem;
+  color: ${theme.color.white};
+  background: ${theme.color.blue};
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+`;
+
 export const H1 = styled.h1`
   ${headerFont};
   color: ${theme.color.black};

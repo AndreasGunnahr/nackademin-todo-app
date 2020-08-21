@@ -19,7 +19,7 @@ export const Title = styled(H1)`
 `;
 
 export const Badge = styled(Span)`
-  padding: 0.3rem 1rem;
+  padding: 0.4rem 1rem;
   margin-left: 2rem;
   border-radius: 10px;
   color: white;

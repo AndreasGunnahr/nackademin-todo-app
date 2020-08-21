@@ -1,23 +1,35 @@
 import styled from "styled-components";
-import { H1, P, FlexRow } from "components/shared";
+import { P, FlexRow } from "components/shared";
 
 export const Container = styled.div`
-  width: 100%;
+  width: 95%;
   background: ${({ theme }) => theme.color.white};
   padding: 1rem;
   cursor: pointer;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-bottom: 0.5rem;
+  box-shadow: -2px 3px 3px 0px rgba(176, 176, 176, 1);
 `;
 
-export const Title = styled(H1)`
-  font-size: 1rem;
+export const Title = styled(P)`
+  font-size: 0.925rem;
+  font-weight: 900;
+  font-style: normal;
   &:first-letter {
     text-transform: uppercase;
   }
 `;
 
+export const Divider = styled.div`
+  border: 1px solid ${({ theme }) => theme.color.lightgrey};
+  margin: 0.75rem 0;
+`;
+
 export const Description = styled(P)`
-  font-size: 0.825rem;
+  font-size: 0.725rem;
   margin-top: 0.5rem;
+  font-style: normal;
   &:first-letter {
     text-transform: uppercase;
   }

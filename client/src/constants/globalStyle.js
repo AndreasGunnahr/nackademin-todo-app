@@ -13,6 +13,11 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
   }
 
+  .dREOdA{
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
 `;
 
 export default GlobalStyle;
