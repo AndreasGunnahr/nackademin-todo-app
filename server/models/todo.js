@@ -19,6 +19,12 @@ var TodoSchema = new mongoose.Schema(
       lowercase: true,
       required: [true, "Can't be blank"],
     },
+    metadata: {
+      type: Object,
+    },
+    laneId: {
+      type: String,
+    },
   },
 
   { timestamps: true }
@@ -30,7 +36,6 @@ TodoSchema.statics.findTodos = function (callback) {
 
 TodoSchema.statics.createTodo = function (todo, callback) {
   const newTodo = new this(todo);
-  console.log(newTodo);
   return newTodo.save(callback);
 };
 

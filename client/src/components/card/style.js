@@ -5,7 +5,7 @@ export const Container = styled.div`
   width: 95%;
   background: ${({ theme }) => theme.color.white};
   padding: 1rem;
-  cursor: pointer;
+  cursor: grab;
   border-radius: 10px;
   margin: 0 auto;
   margin-bottom: 0.5rem;

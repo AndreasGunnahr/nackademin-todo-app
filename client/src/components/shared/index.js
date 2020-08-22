@@ -9,6 +9,28 @@ export const textFont = css`
   font-family: "Raleway", sans-serif;
 `;
 
+export const TextField = styled.textarea`
+  ${textFont};
+  width: 100%;
+  border: none;
+  outline: none;
+  border-top-right-radius: 10px;
+  border-radius: 5px;
+  border-left-bottom: none;
+  text-transform: capitalize;
+`;
+
+export const Input = styled.input`
+  ${textFont};
+  width: 100%;
+  border: none;
+  outline: none;
+  border-top-right-radius: 10px;
+  border-radius: 5px;
+  border-left-bottom: none;
+  text-transform: capitalize;
+`;
+
 export const Button = styled.button`
   ${textFont};
   font-size: 0.825rem;
@@ -40,10 +62,6 @@ export const H1 = styled.h1`
   //   }
   //
 `;
-
-export const H2 = styled.input``;
-export const H3 = styled.input``;
-export const H4 = styled.input``;
 
 export const P = styled.p`
   ${textFont};

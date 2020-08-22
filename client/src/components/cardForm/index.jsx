@@ -9,8 +9,11 @@ import {
   ErrorMessage,
 } from "./style";
 
-const CardForm = ({ onCancel, onAdd, titleRef, descRef }) => {
+const CardForm = ({ laneId, onCancel, onAdd, titleRef, descRef }) => {
   const [error, setError] = useState("");
+
+  const setTitleRef = (ref) => (titleRef = ref);
+  const setDescRef = (ref) => (descRef = ref);
 
   const createTodo = async () => {
     const response = await fetch("/api/todo", {
@@ -20,6 +23,8 @@ const CardForm = ({ onCancel, onAdd, titleRef, descRef }) => {
         title: titleRef.value,
         description: descRef.value,
         done: false,
+        metadata: { title: titleRef.value, description: descRef.value },
+        laneId,
       }),
     });
     const result = await response.json();
@@ -32,9 +37,6 @@ const CardForm = ({ onCancel, onAdd, titleRef, descRef }) => {
     if (createdTodo)
       return onAdd({ title: titleRef.value, description: descRef.value });
   };
-
-  const setTitleRef = (ref) => (titleRef = ref);
-  const setDescRef = (ref) => (descRef = ref);
 
   return (
     <Container>

@@ -14,8 +14,17 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .dREOdA{
-    max-width: 90%;
+    max-width: 95%;
     margin: 0 auto;
+  }
+
+  a.sc-fznzOf.cTpshl{
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .react-trello-board{
+    padding: 1rem;
   }
 
 `;
