@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { P, Button, FlexRow } from "components/shared";
+import { P, Button, FlexRow,TextField,Input } from "components/shared";
 
 export const Container = styled.div`
   width: 95%;
@@ -17,7 +17,18 @@ export const Wrapper = styled(FlexRow)`
   justify-content: space-between;
 `;
 
-export const Input = styled.input`
+export const InputField = styled(Input)`
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.825rem;
+  background: ${({ theme }) => theme.color.grey};
+  border-bottom: 2px solid ${({ theme }) => theme.color.blue};
+  &::placeholder {
+    font-style: italic;
+  }
+`;
+
+export const TextArea = styled(TextField)`
   width: 100%;
   padding: 0.5rem;
   margin-bottom: 1rem;
@@ -25,14 +36,10 @@ export const Input = styled.input`
   border: none;
   background: ${({ theme }) => theme.color.grey};
   border-bottom: 2px solid ${({ theme }) => theme.color.blue};
-  outline: none;
-  border-top-right-radius: 10px;
-  border-radius: 5px;
-  border-left-bottom: none;
   &::placeholder {
     font-style: italic;
   }
-`;
+`
 
 export const CreateButton = styled(Button)``;
 

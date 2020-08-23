@@ -16,8 +16,6 @@ export const TextField = styled.textarea`
   outline: none;
   border-top-right-radius: 10px;
   border-radius: 5px;
-  border-left-bottom: none;
-  text-transform: capitalize;
 `;
 
 export const Input = styled.input`
@@ -27,8 +25,6 @@ export const Input = styled.input`
   outline: none;
   border-top-right-radius: 10px;
   border-radius: 5px;
-  border-left-bottom: none;
-  text-transform: capitalize;
 `;
 
 export const Button = styled.button`

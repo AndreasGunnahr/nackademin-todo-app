@@ -20,8 +20,9 @@ const Card = ({ laneId, id, title, description, onDelete, onClick }) => {
 
   const clickDelete = (e) => {
     const createdTodo = deleteTodo();
-    if (createdTodo) return onDelete();
-    e.stopPropagation();
+    if (createdTodo) 
+      onDelete();
+      e.stopPropagation();
   };
 
   return (

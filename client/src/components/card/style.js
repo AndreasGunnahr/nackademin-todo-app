@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { P, FlexRow } from "components/shared";
+import { P, FlexRow, } from "components/shared";
 
 export const Container = styled.div`
   width: 95%;
-  background: ${({ theme }) => theme.color.white};
+  background: ${({ theme, laneId }) => laneId === "COMPLETED" ? theme.color.green : theme.color.white };
   padding: 1rem;
   cursor: grab;
   border-radius: 10px;
@@ -30,6 +30,9 @@ export const Description = styled(P)`
   font-size: 0.725rem;
   margin-top: 0.5rem;
   font-style: normal;
+  width: 30ch;
+  word-break: break-all;
+  white-space: normal;
   &:first-letter {
     text-transform: uppercase;
   }
@@ -41,4 +44,5 @@ export const TopContainer = styled(FlexRow)`
 
 export const DeleteButton = styled.a`
   font-size: 1rem;
+  cursor: pointer;
 `;

@@ -4,14 +4,11 @@ var TodoSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      lowercase: true,
       required: [true, "Can't be blank"],
     },
 
     description: {
       type: String,
-      lowercase: true,
-      required: [true, "Can't be blank"],
     },
 
     done: {
