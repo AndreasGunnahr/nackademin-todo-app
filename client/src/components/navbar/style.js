@@ -9,13 +9,16 @@ export const NavContainer = styled.nav`
   align-items: center;
   padding: 0 2rem;
   background: ${({ theme }) => theme.color.blue};
+  @media (max-width: 590px) {
+    justify-content: flex-end;
+  }
   @media (max-width: 470px) {
     height: 58px;
   }
 `;
 
 export const Wrapper = styled(FlexRow)`
-  @media (max-width: 1023px) {
+  @media (max-width: 590px) {
     display: none;
   }
 `;

@@ -14,7 +14,6 @@ export const TextField = styled.textarea`
   width: 100%;
   border: none;
   outline: none;
-  border-top-right-radius: 10px;
   border-radius: 5px;
 `;
 
@@ -23,7 +22,6 @@ export const Input = styled.input`
   width: 100%;
   border: none;
   outline: none;
-  border-top-right-radius: 10px;
   border-radius: 5px;
 `;
 
@@ -44,19 +42,6 @@ export const H1 = styled.h1`
   color: ${theme.color.black};
   font-size: 2rem;
   font-weight: 900;
-  //   @media (min-width: 415px) {
-  //     font-size: 2.25rem;
-  //   }
-  //   @media (min-width: 768px) {
-  //     font-size: 2.5rem;
-  //   }
-  //   @media (min-width: 1024px) {
-  //     font-size: 3.25rem;
-  //   }
-  //   @media (min-width: 1440px) {
-  //     font-size: 3.75rem;
-  //   }
-  //
 `;
 
 export const P = styled.p`
@@ -67,13 +52,6 @@ export const P = styled.p`
   line-height: 1.4;
   margin: 0;
   padding: 0;
-  // @media (min-width: 415px) {
-  //   font-size: 1rem;
-  // }
-
-  // @media (min-width: 1440px) {
-  //   font-size: 1.15rem;
-  // }
 `;
 
 export const Span = styled.span`

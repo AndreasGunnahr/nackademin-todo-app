@@ -1,42 +1,29 @@
 import React from "react";
-import GlobalStyle from "constants/globalStyle";
-import styled from "styled-components";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import theme from "constants/theme";
-// import useModal from "hooks/useModal";
+import GlobalStyle from "constants/globalStyle";
 
 // IMPORT OF COMPONENTS
 import Navbar from "components/navbar";
-import StatusBar from "components/statusBar";
-import Draggable from "components/draggable";
-// import Modal from "components/modal";
 
-const Container = styled.div``;
+// IMPORT OF PAGES
+import Home from "pages/home";
+import Board from "pages/board";
+import Login from "pages/login";
+import Register from "pages/register";
 
 const App = () => {
-  // const { isShowing, toggle } = useModal();
-
-  // const handleCardClick = (id, metadata, laneId) => {
-  //   console.log(metadata);
-  //   toggle();
-  // };
   return (
     <ThemeProvider theme={theme}>
+      <Navbar />
       <GlobalStyle />
-      <Container>
-        <Navbar />
-        <StatusBar />
-        <Draggable />
-      </Container>
-      {/* {isShowing && (
-        <Modal
-          isShowing={isShowing}
-          hide={toggle}
-          // content={content}
-          // setTodos={setTodos}
-          // todos={todos}
-        />
-      )} */}
+      <Router>
+        <Route exact path={"/"} component={Home} />
+        <Route exact path={"/board"} component={Board} />
+        <Route exact path={"/login"} component={Login} />
+        <Route exact path={"/register"} component={Register} />
+      </Router>
     </ThemeProvider>
   );
 };
