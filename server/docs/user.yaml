@@ -1,0 +1,44 @@
+tags:
+  - name: User
+    description: Everything about our user.
+
+paths:
+  /users:
+    get:
+      tags:
+        - User
+      description: This should return all users
+      summary: Get all users
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Returns multiples user objects"
+        500:
+          description: "Internal error"
+
+  /users/{id}:
+    get:
+      tags:
+        - User
+      description: This should return all users
+      summary: Get all users
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: connected to a specific user
+      responses:
+        200:
+          description: "Returns a single user object"
+        500:
+          description: "Internal error"
+
+definitions: # Schema definition for request body
+  User:
+    type: object
+    properties:
+      user:
+        type: object
+        properties:

@@ -1,0 +1,99 @@
+tags:
+  - name: Todo
+    description: Everything about our todos.
+
+paths:
+  /todos:
+    get:
+      tags:
+        - Todo
+      description: This should return all todos
+      summary: Get all todos
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Returns multiples todos objects"
+        500:
+          description: "Internal error"
+
+    post:
+      tags:
+        - Todo
+      description: This should create a new todo
+      summary: Create todo
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: Todo
+          description: request body parameters
+          required: true
+          schema:
+            $ref: "#/definitions/Todo"
+      responses:
+        200:
+          description: "An object with our created todo"
+        500:
+          description: "Internal error"
+
+  /todos/{id}:
+    put:
+      tags:
+        - Todo
+      description: This should update a existing todo
+      summary: Update todo
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: connected to a specific todo
+          required: true
+        - in: body
+          name: Todo
+          description: request body parameter
+          required: true
+          schema:
+            $ref: "#/definitions/Todo"
+      responses:
+        200:
+          description: "An object with our updated todo"
+        500:
+          description: "Internal error"
+
+    delete:
+      tags:
+        - Todo
+      description: This should delete a todo
+      summary: Delete todo
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: connected to a specific todo
+          required: true
+      responses:
+        200:
+          description: "Number of deleted records"
+        500:
+          description: "Internal error"
+
+definitions: # Schema definition for request body
+  Todo:
+    type: object
+    properties:
+      todo:
+        type: object
+        properties:
+          title:
+            type: string
+          description:
+            type: string
+          done:
+            type: string
+          metadata:
+            type: object
+          laneId:
+            type: string

@@ -2,7 +2,7 @@ const Todo = require("../models/todo");
 
 const FindAll = (req, res) => {
   Todo.findTodos((error, result) => {
-    if (error) return res.status(400).send(error);
+    if (error) return res.status(500).send(error);
     return res.status(200).send({ message: "All todos", data: result });
   });
 };
