@@ -1,33 +1,41 @@
 const Todo = require("../models/todo");
 
-const FindAll = (req, res) => {
-  Todo.findTodos((error, result) => {
-    if (error) return res.status(500).send(error);
-    return res.status(200).send({ message: "All todos", data: result });
-  });
+const FindAll = async (req, res) => {
+  try {
+    const doc = await Todo.findTodos();
+    return res.status(200).send({ message: "All todos", data: doc });
+  } catch (e) {
+    return res.status(500).send(e);
+  }
 };
 
-const Create = (req, res) => {
-  Todo.createTodo(req.body, (error, result) => {
-    if (error) return res.status(400).send(error);
-    return res.status(200).send({ message: "Todo created", data: result });
-  });
+const Create = async (req, res) => {
+  try {
+    const doc = await Todo.createTodo(req.body);
+    return res.status(200).send({ message: "Todo created", data: doc });
+  } catch (e) {
+    return res.status(400).send(e);
+  }
 };
 
-const Update = (req, res) => {
+const Update = async (req, res) => {
   const todoId = req.params.id;
-  Todo.updateTodo(todoId, req.body, (error, result) => {
-    if (error) return res.status(400).send(error);
-    return res.status(200).send({ message: "Todo updated", data: result });
-  });
+  try {
+    const doc = await Todo.updateTodo(todoId, req.body);
+    return res.status(200).send({ message: "Todo updated", data: doc });
+  } catch (e) {
+    return res.status(400).send(e);
+  }
 };
 
-const Delete = (req, res) => {
+const Delete = async (req, res) => {
   const todoId = req.params.id;
-  Todo.deleteTodo(todoId, (error, result) => {
-    if (error) return res.status(400).send(error);
+  try {
+    const doc = await Todo.deleteTodo(todoId);
     return res.status(200).send({ message: "Todo deleted", data: {} });
-  });
+  } catch (e) {
+    return res.status(400).send(e);
+  }
 };
 
 module.exports = {

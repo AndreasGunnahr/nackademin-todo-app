@@ -16,15 +16,15 @@ const CardForm = ({ laneId, onCancel, onAdd, titleRef, descRef }) => {
   const setDescRef = (ref) => (descRef = ref);
 
   const createTodo = async () => {
-    const checkDesc = descRef.value ? descRef.value : '';
-    const response = await fetch("/api/todo", {
+    const checkDesc = descRef.value ? descRef.value : "";
+    const response = await fetch("/api/todos", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         title: titleRef.value,
         description: checkDesc,
         done: false,
-        metadata: { title: titleRef.value, description: checkDesc},
+        metadata: { title: titleRef.value, description: checkDesc },
         laneId,
       }),
     });
@@ -34,13 +34,12 @@ const CardForm = ({ laneId, onCancel, onAdd, titleRef, descRef }) => {
 
   const handleAdd = async () => {
     if (!titleRef.value) return setError("*Enter a valid title.");
-    const {data,message} = await createTodo();
-    console.log(data)
-    console.log(message)
-    if (data)
-      data["id"] = data["_id"];
-      delete data["_id"];
-      return onAdd(data);
+    const { data, message } = await createTodo();
+    console.log(data);
+    console.log(message);
+    if (data) data["id"] = data["_id"];
+    delete data["_id"];
+    return onAdd(data);
   };
 
   return (

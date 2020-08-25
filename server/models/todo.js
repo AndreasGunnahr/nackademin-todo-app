@@ -1,6 +1,6 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-var TodoSchema = new mongoose.Schema(
+const TodoSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -27,21 +27,21 @@ var TodoSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-TodoSchema.statics.findTodos = function (callback) {
-  return this.find({}, callback);
+TodoSchema.statics.findTodos = function () {
+  return this.find({});
 };
 
-TodoSchema.statics.createTodo = function (todo, callback) {
+TodoSchema.statics.createTodo = function (todo) {
   const newTodo = new this(todo);
-  return newTodo.save(callback);
+  return newTodo.save();
 };
 
-TodoSchema.statics.updateTodo = function (id, todo, callback) {
-  return this.findOneAndUpdate({ _id: id }, todo, { new: true }, callback);
+TodoSchema.statics.updateTodo = function (id, todo) {
+  return this.findOneAndUpdate({ _id: id }, todo, { new: true });
 };
 
-TodoSchema.statics.deleteTodo = function (id, callback) {
-  return this.findOneAndRemove({ _id: id }, callback);
+TodoSchema.statics.deleteTodo = function (id) {
+  return this.findOneAndRemove({ _id: id });
 };
 
 const Todo = mongoose.model("Todo", TodoSchema);

@@ -16,9 +16,13 @@ app.use(cors());
 
 // IMPORT ALL ROUTES
 const todoRoutes = require("./routes/todo");
+const userRoutes = require("./routes/user");
+const authRoutes = require("./routes/auth");
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use("/api/todos", todoRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Listen on port ${process.env.PORT}`);

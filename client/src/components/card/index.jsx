@@ -13,16 +13,15 @@ import {
 
 const Card = ({ laneId, id, title, description, onDelete, onClick }) => {
   const deleteTodo = async () => {
-    const response = await fetch(`/api/todo/${id}`, { method: "DELETE" });
+    const response = await fetch(`/api/todos/${id}`, { method: "DELETE" });
     const result = await response.json();
     return result;
   };
 
   const clickDelete = (e) => {
     const createdTodo = deleteTodo();
-    if (createdTodo) 
-      onDelete();
-      e.stopPropagation();
+    if (createdTodo) onDelete();
+    e.stopPropagation();
   };
 
   return (

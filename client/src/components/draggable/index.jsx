@@ -25,7 +25,7 @@ const Draggable = () => {
   };
 
   const getTodos = async () => {
-    const response = await fetch("/api/todo");
+    const response = await fetch("/api/todos");
     const { data } = await response.json();
     const changeIdProperty = data.map(({ _id: id, ...rest }) => ({
       id,
@@ -74,7 +74,7 @@ const Draggable = () => {
   const updateStatus = async (id, laneId) => {
     const todoIndex = todos.findIndex((todo) => todo.id === id);
     const done = laneId === "COMPLETED" ? true : false;
-    const response = await fetch(`/api/todo/${id}`, {
+    const response = await fetch(`/api/todos/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

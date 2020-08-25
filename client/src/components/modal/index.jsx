@@ -22,7 +22,7 @@ const Modal = ({ isShowing, hide, content, updateCard, todos }) => {
 
   const updateTodo = async () => {
     todoIndex = todos.findIndex((todo) => todo.id === content.id);
-    const response = await fetch(`/api/todo/${content.id}`, {
+    const response = await fetch(`/api/todos/${content.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
