@@ -17,8 +17,8 @@ export const Container = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1050;
+  transform: translate(calc(-50% + 0.5px), calc(-50% + 0.5px));
+  z-index: 2000;
   width: 450px;
   height: 450px;
   overflow-x: hidden;
@@ -76,6 +76,9 @@ export const UpdateButton = styled(Button)`
   padding: 0.8rem;
   font-size: 0.925rem;
   margin-top: 1rem;
+  &:disabled {
+    background: ${({ theme }) => theme.color.grey};
+  }
 `;
 
 export const ErrorMessage = styled(P)`

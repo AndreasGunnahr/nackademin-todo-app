@@ -7,11 +7,12 @@ import Draggable from "components/draggable";
 
 const Container = styled.div``;
 
-const Board = () => {
+const Board = (props) => {
+  console.log(props);
   return (
     <Container>
       <StatusBar />
-      <Draggable />
+      <Draggable boardId={props.match.params.id} />
     </Container>
   );
 };

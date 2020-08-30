@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { NotFoundError } = require("../utils/errors");
 
 const TodoSchema = new mongoose.Schema(
   {
@@ -16,10 +17,16 @@ const TodoSchema = new mongoose.Schema(
       lowercase: true,
       required: [true, "Can't be blank"],
     },
+
     metadata: {
       type: Object,
     },
+
     laneId: {
+      type: String,
+    },
+
+    boardId: {
       type: String,
     },
   },
@@ -27,8 +34,8 @@ const TodoSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-TodoSchema.statics.findTodos = function () {
-  return this.find({});
+TodoSchema.statics.findTodosByBoardId = async function (id) {
+  return await this.find({ boardId: id });
 };
 
 TodoSchema.statics.createTodo = function (todo) {
@@ -36,8 +43,8 @@ TodoSchema.statics.createTodo = function (todo) {
   return newTodo.save();
 };
 
-TodoSchema.statics.updateTodo = function (id, todo) {
-  return this.findOneAndUpdate({ _id: id }, todo, { new: true });
+TodoSchema.statics.updateTodo = async function (id, todo) {
+  return this.findOneAndUpdate({ _id: id }, { $set: todo }, { new: true });
 };
 
 TodoSchema.statics.deleteTodo = function (id) {

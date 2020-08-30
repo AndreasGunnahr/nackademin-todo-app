@@ -9,6 +9,9 @@ router.post("/login", Auth.Login);
 // REGISTER A NEW USER
 router.post("/register", Auth.Register);
 
-// Token, refresh token?
+// CHECK IF USER HAVE A VALID JWT TOKEN
+// router.post("/validToken", Auth.ValidateToken);
+
+// REFRESH USERS JWT TOKEN
 
 module.exports = router;

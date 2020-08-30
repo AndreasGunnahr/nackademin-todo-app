@@ -1,7 +1,34 @@
 import React from "react";
+import styled from "styled-components";
+import RegisterForm from "components/registerForm";
+import Paper from "assets/paper.jpg";
+
+const Container = styled.div`
+  height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  background: ${({ theme }) => theme.color.grey};
+  @media (max-width: 470px) {
+    height: calc(100vh - 58px);
+  }
+`;
+
+const ImageContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  flex: 60%;
+  background: url(${Paper}) no-repeat;
+  background-size: cover;
+  background-position: center;
+`;
 
 const Register = () => {
-  return <div>register</div>;
+  return (
+    <Container>
+      <RegisterForm />
+      <ImageContainer />
+    </Container>
+  );
 };
 
 export default Register;

@@ -8,13 +8,15 @@ import Card from "components/card";
 import CardForm from "components/cardForm";
 import LaneHeader from "components/laneHeader";
 import Modal from "components/modal";
+import { useAuthContext } from "store/authContext";
 
-const Draggable = () => {
+const Draggable = ({ boardId }) => {
   const [todos, setTodos] = useState(null);
   const [content, setContent] = useState({});
   const [board, setBoard] = useState({});
   const [eventBus, setEventBus] = useState(undefined);
   const { isShowing, toggle } = useModal();
+  const { user } = useAuthContext();
 
   useEffect(() => {
     getTodos();
@@ -25,9 +27,14 @@ const Draggable = () => {
   };
 
   const getTodos = async () => {
-    const response = await fetch("/api/todos");
-    const { data } = await response.json();
-    const changeIdProperty = data.map(({ _id: id, ...rest }) => ({
+    const response = await fetch(`/api/boards/${boardId}/todos`, {
+      headers: {
+        Authorization: "Bearer " + user.token,
+      },
+    });
+    const { todos } = await response.json();
+
+    const changeIdProperty = todos.map(({ _id: id, ...rest }) => ({
       id,
       ...rest,
     }));
@@ -37,7 +44,6 @@ const Draggable = () => {
           id: "TODO",
           title: "Todo list",
           label: "0/10",
-
           cards: changeIdProperty.filter((todo) => todo.laneId === "TODO"),
         },
         {
@@ -67,18 +73,20 @@ const Draggable = () => {
     eventBus.publish({
       type: "UPDATE_CARD",
       laneId: todo.laneId,
+      boardId,
       card: todo,
     });
   };
 
   const updateStatus = async (id, laneId) => {
-    const todoIndex = todos.findIndex((todo) => todo.id === id);
     const done = laneId === "COMPLETED" ? true : false;
     const response = await fetch(`/api/todos/${id}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + user.token,
+      },
       body: JSON.stringify({
-        ...todos[todoIndex],
         done,
         laneId,
       }),
@@ -89,14 +97,14 @@ const Draggable = () => {
 
   const handleUpdateStatus = async (fromLaneId, toLaneId, cardId) => {
     if (fromLaneId !== toLaneId) {
-      const { data } = await updateStatus(cardId, toLaneId);
-      if (data) {
-        data["id"] = data["_id"];
-        delete data["_id"];
+      const { todo } = await updateStatus(cardId, toLaneId);
+      if (todo) {
+        todo["id"] = todo["_id"];
+        delete todo["_id"];
         eventBus.publish({
           type: "UPDATE_CARD",
           laneId: toLaneId,
-          card: data,
+          card: todo,
         });
       }
     }

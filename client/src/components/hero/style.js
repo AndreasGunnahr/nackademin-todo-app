@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { H1, FlexRow, Button } from "components/shared";
+import { H1, FlexRow, LinkButton } from "components/shared";
 
 export const Container = styled.div`
   height: calc(100vh - 70px);
@@ -51,7 +51,7 @@ export const Title = styled(H1)`
   }
 `;
 
-export const ActionButton = styled(Button)`
+export const ActionButton = styled(LinkButton)`
   margin-top: 3rem;
   font-size: 1.35rem;
   background: ${({ theme }) => theme.color.blue};

@@ -8,6 +8,9 @@ const cors = require("cors");
 const dbConnect = require("./database");
 const { swaggerUi, swaggerDocs } = require("./swaggerDoc");
 
+// IMPORT OF MIDDLEWARE
+const handleErrors = require("./middlewares/handleErrors");
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -18,11 +21,17 @@ app.use(cors());
 const todoRoutes = require("./routes/todo");
 const userRoutes = require("./routes/user");
 const authRoutes = require("./routes/auth");
+const boardRoutes = require("./routes/board");
+const adminRoutes = require("./routes/admin");
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use("/api/todos", todoRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/boards", boardRoutes);
+app.use("/api/admin", adminRoutes);
+
+app.use(handleErrors);
 
 app.listen(process.env.PORT, () => {
   console.log(`Listen on port ${process.env.PORT}`);

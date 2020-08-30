@@ -1,19 +1,15 @@
 const express = require("express");
 const router = express.Router();
 
-const auth = require("../middlewares/auth");
+const handleAuth = require("../middlewares/handleAuth");
+const handlePermit = require("../middlewares/handlePermit");
+
 const Todo = require("../controllers/todo");
 
-// GET ALL EXISTING TODOS
-router.get("/", auth, Todo.FindAll);
-
-// CREATE A NEW TODO
-router.post("/", auth, Todo.Create);
-
 // UPDATE EXISTING TODO
-router.put("/:id", auth, Todo.Update);
+router.put("/:id", handleAuth, handlePermit("user", "admin"), Todo.Update);
 
 // DELETE EXISTING TODO
-router.delete("/:id", auth, Todo.Delete);
+router.delete("/:id", handleAuth, handlePermit("user", "admin"), Todo.Delete);
 
 module.exports = router;

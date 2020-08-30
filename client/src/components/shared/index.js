@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
 import theme from "constants/theme";
 
 export const headerFont = css`
@@ -25,6 +26,22 @@ export const Input = styled.input`
   border-radius: 5px;
 `;
 
+export const LinkButton = styled(Link)`
+  ${textFont};
+  font-size: 0.825rem;
+  padding: 0.5rem;
+  color: ${theme.color.white};
+  background: ${theme.color.blue};
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  justify-content: center;
+`;
+
 export const Button = styled.button`
   ${textFont};
   font-size: 0.825rem;
@@ -35,6 +52,10 @@ export const Button = styled.button`
   cursor: pointer;
   outline: none;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  justify-content: center;
 `;
 
 export const H1 = styled.h1`

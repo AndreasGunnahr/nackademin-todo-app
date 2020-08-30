@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { useAuthContext } from "store/authContext";
 import {
   Overlay,
   Container,
@@ -18,15 +19,16 @@ const Modal = ({ isShowing, hide, content, updateCard, todos }) => {
   const [newTitle, setNewTitle] = useState(content.metadata.title);
   const [newDesc, setNewDesc] = useState(content.metadata.description);
   const [error, setError] = useState("");
-  let todoIndex;
+  const { user } = useAuthContext();
 
   const updateTodo = async () => {
-    todoIndex = todos.findIndex((todo) => todo.id === content.id);
     const response = await fetch(`/api/todos/${content.id}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + user.token,
+      },
       body: JSON.stringify({
-        ...todos[todoIndex],
         title: newTitle,
         description: newDesc,
         metadata: { title: newTitle, description: newDesc },
@@ -37,16 +39,12 @@ const Modal = ({ isShowing, hide, content, updateCard, todos }) => {
   };
 
   const handleUpdate = async () => {
-    if (!(newTitle !== title || newDesc !== description)) {
-      return setError("*Change either title or description to update");
-    }
-
-    const { message, data } = await updateTodo();
-    if (data) {
-      data["id"] = data["_id"];
-      delete data["_id"];
+    const { message, todo } = await updateTodo();
+    if (todo) {
+      todo["id"] = todo["_id"];
+      delete todo["_id"];
       hide();
-      updateCard(content.id, data);
+      updateCard(content.id, todo);
       return;
     }
     alert(message);
@@ -71,7 +69,12 @@ const Modal = ({ isShowing, hide, content, updateCard, todos }) => {
               />
               {error && <ErrorMessage>{error}</ErrorMessage>}
               <Wrapper>
-                <UpdateButton onClick={handleUpdate}>Update todo</UpdateButton>
+                <UpdateButton
+                  disabled={!(newTitle !== title || newDesc !== description)}
+                  onClick={handleUpdate}
+                >
+                  Update todo
+                </UpdateButton>
               </Wrapper>
             </ModalWrapper>
           </Container>

@@ -1,16 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-// GET ALL USERS
-router.get("/");
+const User = require("../controllers/user");
+const handleAuth = require("../middlewares/handleAuth");
 
 // GET A SPECIFIC USER
-router.get("/:id");
-
-// UPDATE EXISTING TODO
-router.put("/:id");
-
-// DELETE EXISTING TODO
-router.delete("/:id");
+router.get("/:id", handleAuth, User.FindOne);
 
 module.exports = router;

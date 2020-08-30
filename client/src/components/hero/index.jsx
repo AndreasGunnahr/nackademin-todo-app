@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Lottie from "react-lottie";
 import {
   Container,
@@ -26,9 +25,9 @@ const Hero = () => {
           <Title>
             Getting organized <br /> is a sign of self-respect.
           </Title>
-          <Link to={"/login"}>
-            <ActionButton>Start your organized journey today!</ActionButton>
-          </Link>
+          <ActionButton to="/login">
+            Start your organized journey today!
+          </ActionButton>
         </CallToAction>
         <LottieContainer>
           <Lottie options={defaultOptions} />

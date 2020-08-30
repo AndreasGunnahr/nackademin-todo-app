@@ -1,4 +1,5 @@
 import React from "react";
+import { useAuthContext } from "store/authContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
@@ -12,8 +13,14 @@ import {
 } from "./style";
 
 const Card = ({ laneId, id, title, description, onDelete, onClick }) => {
+  const { user } = useAuthContext();
   const deleteTodo = async () => {
-    const response = await fetch(`/api/todos/${id}`, { method: "DELETE" });
+    const response = await fetch(`/api/todos/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + user.token,
+      },
+    });
     const result = await response.json();
     return result;
   };

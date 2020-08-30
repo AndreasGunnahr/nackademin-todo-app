@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useAuthContext } from "store/authContext";
+import { useParams } from "react-router-dom";
 import {
   Container,
   Wrapper,
@@ -11,15 +13,21 @@ import {
 
 const CardForm = ({ laneId, onCancel, onAdd, titleRef, descRef }) => {
   const [error, setError] = useState("");
+  const { user } = useAuthContext();
+  const { id } = useParams();
 
   const setTitleRef = (ref) => (titleRef = ref);
   const setDescRef = (ref) => (descRef = ref);
 
   const createTodo = async () => {
     const checkDesc = descRef.value ? descRef.value : "";
-    const response = await fetch("/api/todos", {
+
+    const response = await fetch(`/api/boards/${id}/todos`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        Authorization: "Bearer " + user.token,
+        "Content-type": "application/json",
+      },
       body: JSON.stringify({
         title: titleRef.value,
         description: checkDesc,
@@ -34,12 +42,12 @@ const CardForm = ({ laneId, onCancel, onAdd, titleRef, descRef }) => {
 
   const handleAdd = async () => {
     if (!titleRef.value) return setError("*Enter a valid title.");
-    const { data, message } = await createTodo();
-    console.log(data);
-    console.log(message);
-    if (data) data["id"] = data["_id"];
-    delete data["_id"];
-    return onAdd(data);
+    const { error, todo } = await createTodo();
+    if (!error) {
+      todo["id"] = todo["_id"];
+      delete todo["_id"];
+      return onAdd(todo);
+    }
   };
 
   return (

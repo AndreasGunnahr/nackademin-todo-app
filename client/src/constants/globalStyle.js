@@ -8,9 +8,15 @@ const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
   }
 
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
   body {
     background: ${({ theme }) => theme.color.white};
     overflow-x: hidden;
+    
+
   }
 
   .dREOdA{
@@ -26,7 +32,6 @@ const GlobalStyle = createGlobalStyle`
   .react-trello-board{
     padding: 1rem;
   }
-
 
 `;
 
