@@ -36,13 +36,13 @@ const UserSchema = new mongoose.Schema(
       type: String,
     },
 
-    bio: {
-      type: String,
-    },
+    // bio: {
+    //   type: String,
+    // },
 
-    image: {
-      type: String,
-    },
+    // image: {
+    //   type: String,
+    // },
   },
 
   { timestamps: true }
@@ -70,15 +70,13 @@ UserSchema.statics.findByUserId = function (id) {
   return this.findById(id);
 };
 
+//- TODO: CHECK IF PASSWORD AND RE-PASSWORD IS THE SAME IN FRONTEND!
 UserSchema.statics.register = async function (user) {
-  const { password, rePassword } = user;
-  if (!(password === rePassword))
-    throw new BadRequestError("Passwords don't match");
-
   const newUser = new this(user);
   const createdUser = await newUser.save();
   return {
-    token: this.generateToken(user),
+    id: createdUser._id,
+    token: this.generateToken(createdUser),
     username: createdUser.username,
     email: createdUser.email,
   };

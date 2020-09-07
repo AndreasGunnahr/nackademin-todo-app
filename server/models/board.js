@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-// const { NotFoundError } = require("../utils/errors");
 
 const BoardSchema = new mongoose.Schema(
   {

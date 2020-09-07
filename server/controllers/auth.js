@@ -5,7 +5,7 @@ const Login = async (req, res, next) => {
 
   try {
     const user = await User.authenticate(username, password);
-    return res.status(200).send({ message: "Login Successful", user });
+    return res.status(200).send({ message: "LOGIN SUCCESSFUL", user });
   } catch (e) {
     console.log(e);
     next(e);
@@ -15,7 +15,7 @@ const Login = async (req, res, next) => {
 const Register = async (req, res, next) => {
   try {
     const user = await User.register(req.body);
-    return res.status(200).send({ message: "User created", user });
+    return res.status(200).send({ message: "USER CREATED", user });
   } catch (e) {
     console.log(e);
     next(e);

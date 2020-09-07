@@ -29,6 +29,9 @@ const TodoSchema = new mongoose.Schema(
     boardId: {
       type: String,
     },
+    userId: {
+      type: String,
+    },
   },
 
   { timestamps: true }
@@ -44,11 +47,15 @@ TodoSchema.statics.createTodo = function (todo) {
 };
 
 TodoSchema.statics.updateTodo = async function (id, todo) {
-  return this.findOneAndUpdate({ _id: id }, { $set: todo }, { new: true });
+  return await this.findOneAndUpdate(
+    { _id: id },
+    { $set: todo },
+    { new: true }
+  );
 };
 
-TodoSchema.statics.deleteTodo = function (id) {
-  return this.findOneAndRemove({ _id: id });
+TodoSchema.statics.deleteTodo = async function (id) {
+  return await this.findOneAndRemove({ _id: id }, { _v: 0 });
 };
 
 const Todo = mongoose.model("Todo", TodoSchema);

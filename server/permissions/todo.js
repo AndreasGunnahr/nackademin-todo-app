@@ -8,8 +8,4 @@ const canEditTodo = (user, todo) => {};
 
 const canDeleteTodo = (user, todo) => {};
 
-const scopedTodos = (user, todos) => {};
-
-module.exports = {
-  scopedTodos,
-};
+module.exports = {};

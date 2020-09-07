@@ -4,17 +4,20 @@ const Update = async (req, res, next) => {
   const todoId = req.params.id;
   try {
     const todo = await Todo.updateTodo(todoId, req.body);
+    console.log(todo);
     return res.status(200).send({ message: "TODO UPDATED", todo });
   } catch (e) {
+    console.log(e);
     next(e);
   }
 };
 
 const Delete = async (req, res, next) => {
   const todoId = req.params.id;
+
   try {
     const todo = await Todo.deleteTodo(todoId);
-    return res.status(200).send({ message: "Todo deleted", data: {} });
+    return res.status(200).send({ message: "TODO DELETED", todo: {} });
   } catch (e) {
     next(e);
   }

@@ -5,6 +5,7 @@ const { scopedBoards } = require("../permissions/board");
 const FindAllBoards = async (req, res, next) => {
   try {
     const boards = await Board.findAllBoards();
+
     return res
       .status(200)
       .send({ message: "ALL BOARDS", boards: scopedBoards(req.user, boards) });
@@ -15,7 +16,6 @@ const FindAllBoards = async (req, res, next) => {
 
 const CreateBoard = async (req, res, next) => {
   const userId = req.user.id;
-
   try {
     const board = await Board.createBoard({ userId, ...req.body });
     return res.status(200).send({ message: "BOARD CREATED", board });
@@ -28,7 +28,6 @@ const UpdateBoard = async (req, res, next) => {
   const boardId = req.params.id;
   try {
     const board = await Board.updateBoard(boardId, req.body);
-    console.log(board);
     return res.status(200).send({ message: "BOARD UPDATED", board });
   } catch (e) {
     next(e);

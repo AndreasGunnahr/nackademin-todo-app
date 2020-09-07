@@ -5,7 +5,6 @@ dotenv.config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const dbConnect = require("./database");
 const { swaggerUi, swaggerDocs } = require("./swaggerDoc");
 
 // IMPORT OF MIDDLEWARE
@@ -33,6 +32,4 @@ app.use("/api/admin", adminRoutes);
 
 app.use(handleErrors);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Listen on port ${process.env.PORT}`);
-});
+module.exports = app;

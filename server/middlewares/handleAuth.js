@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const CheckAuth = (req, res, next) => {
+const handleAuth = (req, res, next) => {
   if (!req.headers.authorization) return res.sendStatus(403);
   const token = req.headers.authorization.replace("Bearer ", "");
 
@@ -9,6 +9,7 @@ const CheckAuth = (req, res, next) => {
     req.user = {
       ...payload,
     };
+    // console.log(req.user);
     next();
   } catch (e) {
     console.log(e);
@@ -16,4 +17,4 @@ const CheckAuth = (req, res, next) => {
   }
 };
 
-module.exports = CheckAuth;
+module.exports = handleAuth;

@@ -38,8 +38,8 @@ router.get(
 // CREATE A NEW TODO FOR A BOARD
 router.post(
   "/:id/todos",
-  handlePermit("user", "admin"),
   handleAuth,
+  handlePermit("user", "admin"),
   Board.CreateTodo
 );
 
