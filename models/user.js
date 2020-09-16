@@ -84,7 +84,7 @@ UserSchema.statics.generateToken = function (user) {
       email: user.email,
       role: user.role,
     },
-    process.env.ACCESS_TOKEN_SECRET,
+    process.env.TOKEN_SECRET,
     { expiresIn: "1h" }
   );
 };

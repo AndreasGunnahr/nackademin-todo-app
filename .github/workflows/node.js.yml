@@ -26,4 +26,4 @@ jobs:
       - run: cd server && npm ci
       - run: cd server && npm test
         env:
-          ACCESS_TOKEN_SECRET: "secret"
+          TOKEN_SECRET: "secret"

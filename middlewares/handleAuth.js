@@ -5,7 +5,7 @@ const handleAuth = (req, res, next) => {
   const token = req.headers.authorization.replace("Bearer ", "");
 
   try {
-    const payload = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    const payload = jwt.verify(token, process.env.TOKEN_SECRET);
     req.user = {
       ...payload,
     };
