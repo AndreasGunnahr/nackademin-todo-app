@@ -8,10 +8,6 @@ const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
   }
 
-  ::-webkit-scrollbar {
-    display: none;
-  }
-
   body {
     background: ${({ theme }) => theme.color.white};
     overflow-x: hidden;
@@ -31,6 +27,14 @@ const GlobalStyle = createGlobalStyle`
 
   .react-trello-board{
     padding: 1rem;
+    max-height: calc(100vh - 140px);
+  }
+
+  .gclEPe{
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    margin-bottom: .25rem;
   }
 
 `;

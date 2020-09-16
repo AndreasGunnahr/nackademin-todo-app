@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import { useAuthContext } from "store/authContext";
 import {
@@ -10,15 +10,13 @@ import {
   InputField,
   TextArea,
   UpdateButton,
-  ErrorMessage,
   Label,
 } from "./style";
 
-const Modal = ({ isShowing, hide, content, updateCard, todos }) => {
+const Modal = ({ isShowing, hide, content, updateCard }) => {
   const { title, description } = content.metadata;
   const [newTitle, setNewTitle] = useState(content.metadata.title);
   const [newDesc, setNewDesc] = useState(content.metadata.description);
-  const [error, setError] = useState("");
   const { user } = useAuthContext();
 
   const updateTodo = async () => {
@@ -67,7 +65,6 @@ const Modal = ({ isShowing, hide, content, updateCard, todos }) => {
                 value={newDesc}
                 onChange={(e) => setNewDesc(e.target.value)}
               />
-              {error && <ErrorMessage>{error}</ErrorMessage>}
               <Wrapper>
                 <UpdateButton
                   disabled={!(newTitle !== title || newDesc !== description)}

@@ -2,10 +2,10 @@ const chai = require("chai");
 const chaiHttp = require("chai-http");
 const db = require("../db-handler");
 const app = require("../../app");
+const User = require("../../models/user");
 const { user } = require("../helpers");
 
 chai.use(chaiHttp);
-chai.should();
 const { expect, request } = chai;
 
 describe("Integration tests - Auth routes", () => {
@@ -14,7 +14,7 @@ describe("Integration tests - Auth routes", () => {
     await db.connect();
   });
 
-  afterEach(async () => {
+  beforeEach(async () => {
     await db.clearDatabase();
   });
 
@@ -35,16 +35,16 @@ describe("Integration tests - Auth routes", () => {
       });
   });
 
-  it("Login a existing user - POST api/auth/login", () => {
+  it("Login a existing user - POST api/auth/login", async () => {
     const fields = { username: user.username, password: user.password };
-    request(app)
+    await User.register(fields);
+    const res = await request(app)
       .post("/api/auth/login")
       .set("Content-type", `application/json`)
-      .send(fields)
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        expect(res).to.be.json;
-        expect(res.body).to.includes({ message: "LOGIN SUCCESSFUL" });
-      });
+      .send(fields);
+
+    expect(res).to.have.status(200);
+    expect(res).to.be.json;
+    expect(res.body).to.includes({ message: "LOGIN SUCCESSFUL" });
   });
 });

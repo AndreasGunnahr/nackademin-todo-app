@@ -4,6 +4,10 @@ const router = express.Router();
 const User = require("../controllers/user");
 const handleAuth = require("../middlewares/handleAuth");
 
-router.get("/:id", handleAuth, User.FindOne);
+// GET ALL CONNECTED DATA FOR A USER - GDPR
+router.get("/info", handleAuth, User.GetInformation);
+
+// DELETE A EXISTING USER AND ALL INFORMATION CONNECTED TO THE USER - GDPR
+router.delete("/info", handleAuth, User.Delete);
 
 module.exports = router;

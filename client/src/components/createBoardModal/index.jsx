@@ -37,6 +37,7 @@ const CreateBoardModal = ({ isShowing, hide, setBoards, boards }) => {
       setBoards([...boards, board]);
       hide();
     }
+    setError(error);
   };
 
   return isShowing

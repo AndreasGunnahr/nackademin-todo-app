@@ -40,6 +40,10 @@ BoardSchema.statics.deleteBoard = async function (id) {
   return this.findOneAndRemove({ _id: id });
 };
 
+BoardSchema.statics.deleteByUserId = async function (userId) {
+  return this.remove({ userId });
+};
+
 const Board = mongoose.model("Board", BoardSchema);
 
 module.exports = Board;

@@ -21,18 +21,14 @@ describe("Unit tests - Todo model", () => {
   describe("CRUD - Todo model", function () {
     let createdUser, createdBoard;
 
-    // Create a new user and board
+    // Clear all test data after test cases & create a new user and board
     beforeEach(async function () {
+      await db.clearDatabase();
       createdUser = await User.register(user);
       createdBoard = await Board.createBoard({
         ...board,
         userId: createdUser.id,
       });
-    });
-
-    // Clear all test data after test cases.
-    afterEach(async function () {
-      await db.clearDatabase();
     });
 
     it("Create a todo to a existing board", async function () {

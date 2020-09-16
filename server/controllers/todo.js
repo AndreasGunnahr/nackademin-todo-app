@@ -4,7 +4,6 @@ const Update = async (req, res, next) => {
   const todoId = req.params.id;
   try {
     const todo = await Todo.updateTodo(todoId, req.body);
-    console.log(todo);
     return res.status(200).send({ message: "TODO UPDATED", todo });
   } catch (e) {
     console.log(e);

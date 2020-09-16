@@ -5,15 +5,18 @@ import useModal from "hooks/useModal";
 
 // IMPORT OF COMPONENTS
 import Card from "components/card";
-import CardForm from "components/cardForm";
 import LaneHeader from "components/laneHeader";
 import Modal from "components/modal";
+import NewCardModal from "components/newCardModal";
+
 import { useAuthContext } from "store/authContext";
 
 const Draggable = ({ boardId }) => {
   const [todos, setTodos] = useState(null);
   const [content, setContent] = useState({});
-  const [board, setBoard] = useState({});
+  const [board, setBoard] = useState({
+    lanes: [{ id: "loading", title: "loading..", cards: [] }],
+  });
   const [eventBus, setEventBus] = useState(undefined);
   const { isShowing, toggle } = useModal();
   const { user } = useAuthContext();
@@ -111,47 +114,42 @@ const Draggable = ({ boardId }) => {
   };
 
   return (
-    <div>
-      {todos ? (
-        <>
-          <Board
-            data={board}
-            editable={true}
-            components={{
-              LaneHeader,
-              Card,
-              NewCardForm: CardForm,
-            }}
-            style={{ backgroundColor: `${theme.color.white}` }}
-            laneStyle={{
-              borderRadius: "10px",
-              backgroundColor: `${theme.color.grey}`,
-              marginRight: "1rem",
-              fontFamily: '"Raleway", sans-serif',
-              fontSize: ".825rem",
-              fontStyle: "italic",
-              boxShadow: "-2px 3px 3px 0px rgba(176, 176, 176, 1)",
-            }}
-            onCardClick={handleCardClick}
-            onCardMoveAcrossLanes={handleUpdateStatus}
-            // canAddLanes={true}
-            eventBusHandle={handleEventBus}
-          />
-          {isShowing && (
-            <Modal
-              isShowing={isShowing}
-              hide={toggle}
-              updateCard={updateCard}
-              content={content}
-              setTodos={setTodos}
-              todos={todos}
-            />
-          )}
-        </>
-      ) : (
-        <h1>loading</h1>
+    <>
+      <Board
+        data={board}
+        editable={true}
+        components={{
+          LaneHeader,
+          Card,
+          NewCardForm: NewCardModal,
+        }}
+        style={{ backgroundColor: `${theme.color.white}` }}
+        laneStyle={{
+          borderRadius: "10px",
+          backgroundColor: `${theme.color.grey}`,
+          marginRight: "1rem",
+          fontFamily: '"Raleway", sans-serif',
+          fontSize: ".825rem",
+          fontStyle: "italic",
+          boxShadow: "-2px 3px 3px 0px rgba(176, 176, 176, 1)",
+          maxHeight: "calc(100vh - 140px - 2.5rem)",
+          paddingBottom: "2rem",
+        }}
+        onCardClick={handleCardClick}
+        onCardMoveAcrossLanes={handleUpdateStatus}
+        eventBusHandle={handleEventBus}
+      />
+      {isShowing && (
+        <Modal
+          isShowing={isShowing}
+          hide={toggle}
+          updateCard={updateCard}
+          content={content}
+          setTodos={setTodos}
+          todos={todos}
+        />
       )}
-    </div>
+    </>
   );
 };
 

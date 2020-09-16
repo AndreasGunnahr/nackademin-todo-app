@@ -58,6 +58,10 @@ TodoSchema.statics.deleteTodo = async function (id) {
   return await this.findOneAndRemove({ _id: id }, { _v: 0 });
 };
 
+TodoSchema.statics.deleteByUserId = async function (userId) {
+  return await this.remove({ userId });
+};
+
 const Todo = mongoose.model("Todo", TodoSchema);
 
 module.exports = Todo;

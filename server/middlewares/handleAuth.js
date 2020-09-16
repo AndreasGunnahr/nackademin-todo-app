@@ -9,7 +9,7 @@ const handleAuth = (req, res, next) => {
     req.user = {
       ...payload,
     };
-    // console.log(req.user);
+
     next();
   } catch (e) {
     console.log(e);

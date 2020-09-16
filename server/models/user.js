@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const Board = require("./board");
+const Todo = require("./todo");
 const {
   NotFoundError,
   UnauthorizedError,
@@ -35,14 +37,6 @@ const UserSchema = new mongoose.Schema(
     password: {
       type: String,
     },
-
-    // bio: {
-    //   type: String,
-    // },
-
-    // image: {
-    //   type: String,
-    // },
   },
 
   { timestamps: true }
@@ -95,25 +89,6 @@ UserSchema.statics.generateToken = function (user) {
   );
 };
 
-// UserSchema.statics.validateToken = async function (header) {
-//   if (!header) throw new UnauthorizedError("No authorization header provided");
-
-//   const token = header.replace("Bearer", "").trim();
-//   if (!token) throw new UnauthorizedError("No token provided");
-
-//   const verified = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-//   if (!verified) throw new UnauthorizedError("Token verification failed");
-
-//   let user = await this.findByUserId(verified.id);
-//   if (!user) throw new NotFoundError("User don't exists");
-
-//   return {
-//     username: user.username,
-//     email: user.email,
-//     role: user.role,
-//   };
-// };
-
 UserSchema.statics.authenticate = async function (username, password) {
   const user = await this.findByUsername(username);
   if (!user) throw new NotFoundError("Username or password is incorrect");
@@ -128,6 +103,48 @@ UserSchema.statics.authenticate = async function (username, password) {
     role: user.role,
     token: this.generateToken(user),
   };
+};
+
+UserSchema.statics.findAllInformation = async function (id) {
+  const formatId = mongoose.Types.ObjectId(id);
+  const info = await this.aggregate([
+    { $match: { _id: formatId } },
+    {
+      $project: {
+        username: 1,
+        email: 1,
+        role: 1,
+        _id: {
+          $toString: "$_id",
+        },
+      },
+    },
+    {
+      $lookup: {
+        from: "boards",
+        localField: "_id",
+        foreignField: "userId",
+        as: "boards",
+      },
+    },
+    {
+      $lookup: {
+        from: "todos",
+        localField: "_id",
+        foreignField: "userId",
+        as: "todos",
+      },
+    },
+  ]);
+
+  return info[0];
+};
+
+UserSchema.statics.deleteAllInformation = async function (id) {
+  await this.remove({ _id: id });
+  await Board.deleteByUserId(id);
+  await Todo.deleteByUserId(id);
+  return;
 };
 
 const User = mongoose.model("User", UserSchema);

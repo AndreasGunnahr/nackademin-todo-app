@@ -20,15 +20,11 @@ describe("Unit tests - Board model", () => {
   describe("CRUD - Board model", function () {
     let userId;
 
-    // Create a new user and board
+    // Clear database and create a new user
     beforeEach(async function () {
+      await db.clearDatabase();
       const createdUser = await User.register(user);
       userId = createdUser.id.toString();
-    });
-
-    // Clear all test data after test cases.
-    afterEach(async function () {
-      await db.clearDatabase();
     });
 
     it("Create a new board", async function () {

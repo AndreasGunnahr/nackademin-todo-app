@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "store/authContext";
+
 import {
   Container,
   Wrapper,
@@ -18,6 +19,8 @@ import {
   DropDownList,
   ListItem,
 } from "./style";
+
+import useOutsideClick from "hooks/useOutsideClick";
 
 const BoardTable = ({ toggle, boards, setBoards, toggleEdit }) => {
   const { user } = useAuthContext();
@@ -60,16 +63,25 @@ const BoardTable = ({ toggle, boards, setBoards, toggleEdit }) => {
 
 const Board = ({ board, handleDelete, toggleEdit }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef();
   const toggleMenu = (e) => {
     e.preventDefault();
     setIsOpen(!isOpen);
   };
 
+  useOutsideClick(ref, () => {
+    setIsOpen(false);
+  });
+
   return (
     <Link to={`/boards/${board._id}`} style={{ textDecoration: "none" }}>
       <Card isOpen={isOpen}>
         <DropDownContainer>
-          <DropDownHeader isOpen={isOpen} onClick={(e) => toggleMenu(e)}>
+          <DropDownHeader
+            ref={ref}
+            isOpen={isOpen}
+            onClick={(e) => toggleMenu(e)}
+          >
             ●●●
           </DropDownHeader>
           {isOpen && (

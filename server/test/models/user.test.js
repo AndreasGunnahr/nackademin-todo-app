@@ -11,7 +11,7 @@ describe("Unit tests - User model", () => {
   });
 
   // Clear all test data after every test.
-  afterEach(async function () {
+  beforeEach(async function () {
     await db.clearDatabase();
   });
 
@@ -21,24 +21,19 @@ describe("Unit tests - User model", () => {
   });
 
   describe("CRUD - User model", function () {
-    it("Create a new user", async function () {
+    it("Create a new user", async () => {
       const createdUser = await User.register(user);
 
       createdUser.should.be.a("object");
       createdUser.should.have.keys("token", "username", "email", "id");
     });
 
-    it("Login in a existing user", async function () {
+    it("Login in a existing user", async () => {
       await User.register(user);
       const loginUser = await User.authenticate(user.username, user.password);
 
       loginUser.should.be.a("object");
       loginUser.should.have.keys("token", "username", "email", "role");
-    });
-
-    it("Delete a existing user", async function () {
-      // const users = await User.register();
-      // const deletedUser = await User
     });
   });
 });

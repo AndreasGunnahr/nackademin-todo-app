@@ -48,6 +48,7 @@ const EditBoardModal = ({
       setBoards(tempBoards);
       hide();
     }
+    setError(error);
   };
 
   return isShowing

@@ -8,7 +8,6 @@ import Draggable from "components/draggable";
 const Container = styled.div``;
 
 const Board = (props) => {
-  console.log(props);
   return (
     <Container>
       <StatusBar />

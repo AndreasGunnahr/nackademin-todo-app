@@ -1,15 +1,29 @@
 const User = require("../models/user");
 
-const FindOne = async (req, res) => {
+const GetInformation = async (req, res, next) => {
+  const { id } = req.user;
   try {
-    const user = await User.findByUserId(req.params.id);
-    if (!user) return res.status(400).send({ message: "User don't exist" });
-    return res.status(200).send({ message: "One user", user });
+    const info = await User.findAllInformation(id);
+    return res.status(200).send({ message: "ALL USER INFORMATION", info });
   } catch (e) {
-    return res.status(500).send(e);
+    next(e);
+  }
+};
+
+const Delete = async (req, res, next) => {
+  const { id } = req.user;
+  try {
+    const info = await User.deleteAllInformation(id);
+
+    return res
+      .status(200)
+      .send({ message: "USER & CONNECTED INFORMATION DELETED", info });
+  } catch (e) {
+    next(e);
   }
 };
 
 module.exports = {
-  FindOne,
+  GetInformation,
+  Delete,
 };
