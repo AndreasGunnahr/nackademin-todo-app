@@ -5,12 +5,16 @@ dotenv.config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require("path");
 const { swaggerUi, swaggerDocs } = require("./swaggerDoc");
 
 // IMPORT OF MIDDLEWARE
 const handleErrors = require("./middlewares/handleErrors");
 
 const app = express();
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, "client/build")));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -31,5 +35,9 @@ app.use("/api/boards", boardRoutes);
 app.use("/api/admin", adminRoutes);
 
 app.use(handleErrors);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+});
 
 module.exports = app;
