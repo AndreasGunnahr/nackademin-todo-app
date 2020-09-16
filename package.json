@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node start.js",
     "dev": "nodemon start.js",
-    "test": "mocha --recursive --exit"
+    "test": "mocha --recursive --exit",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "",
   "license": "ISC",
