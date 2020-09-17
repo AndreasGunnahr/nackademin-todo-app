@@ -9,6 +9,9 @@ export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media (max-width: 1024px) {
+    flex: 100%;
+  }
 `;
 
 export const Wrapper = styled(FlexCol)`

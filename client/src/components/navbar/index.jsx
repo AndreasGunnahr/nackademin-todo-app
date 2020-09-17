@@ -28,7 +28,7 @@ const Navbar = () => {
   return (
     <NavContainer>
       <Logo to="/">LOGO</Logo>
-      {/* <Hamburger open={open} setOpen={setOpen} /> */}
+      <Hamburger open={open} setOpen={setOpen} />
       {isAuthenticated ? (
         <>
           <AuthWrapper>

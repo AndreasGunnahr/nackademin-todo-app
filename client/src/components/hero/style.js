@@ -3,6 +3,7 @@ import { H1, FlexRow, LinkButton } from "components/shared";
 
 export const Container = styled.div`
   height: calc(100vh - 70px);
+  min-height: 700px;
   padding: 5%;
   display: flex;
   align-items: center;
@@ -17,6 +18,7 @@ export const Wrapper = styled(FlexRow)`
   max-width: 1600px;
   justify-content: center;
   align-items: flex-start;
+  margin: auto;
   @media (max-width: 1100px) {
     flex-wrap: wrap;
     flex-direction: column-reverse;
@@ -24,7 +26,7 @@ export const Wrapper = styled(FlexRow)`
 `;
 
 export const CallToAction = styled.div`
-  flex: 1;
+  flex: 60%;
   margin-right: 4rem;
   @media (max-width: 1024px) {
     margin: 0;
@@ -71,10 +73,10 @@ export const ActionButton = styled(LinkButton)`
 `;
 
 export const LottieContainer = styled.div`
-  flex: 1;
   height: 500px;
   width: 500px;
-  margin: 0 auto;
+  flex: 40%;
+
   @media (max-width: 1100px) {
     height: 450px;
     width: 450px;

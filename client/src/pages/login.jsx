@@ -5,6 +5,7 @@ import Image from "assets/login.svg";
 
 const Container = styled.div`
   height: calc(100vh - 70px);
+  min-height: 700px;
   display: flex;
   align-items: center;
   background: ${({ theme }) => theme.color.grey};
@@ -20,7 +21,11 @@ const ImageWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 720px;
   padding: 5%;
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 const ImageContainer = styled.div`

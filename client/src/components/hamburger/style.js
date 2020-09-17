@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: none;
   cursor: pointer;
-  @media screen and (max-width: 590px) {
+  @media screen and (max-width: 500px) {
     display: inline-block;
   }
 
