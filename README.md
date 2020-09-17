@@ -9,7 +9,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/andreasgunnahr/nackademin-todo-app/">
-    <img src="https://github.com/AndreasGunnahr/nackademin-todo-app/blob/master/client/src/assets/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://github.com/AndreasGunnahr/nackademin-todo-app/blob/master/client/src/assets/logo.png" alt="Logo" width="100" height="100">
   </a>
 
   <h3 align="center">Todo application</h3>
