@@ -1,6 +1,24 @@
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
+const DisableTryItOutPlugin = function () {
+  return {
+    statePlugins: {
+      spec: {
+        wrapSelectors: {
+          allowTryItOutFor: () => () => false,
+        },
+      },
+    },
+  };
+};
+
+const specOptions = {
+  swaggerOptions: {
+    plugins: [DisableTryItOutPlugin],
+  },
+};
+
 const options = {
   swaggerDefinition: {
     info: {
@@ -16,4 +34,4 @@ const options = {
 
 const swaggerDocs = swaggerJsDoc(options);
 
-module.exports = { swaggerUi, swaggerDocs };
+module.exports = { swaggerUi, swaggerDocs, specOptions };

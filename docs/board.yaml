@@ -1,0 +1,167 @@
+tags:
+  - name: Board
+    description: Everything about our boards.
+paths:
+  /boards:
+    get:
+      tags:
+        - Board
+      description: This should return all boards connected to a specific user or all boards if the user is admin
+      summary: Get all boards for a specific user
+      produces:
+        - application/json
+      responses:
+      200:
+        description: "Return a list of all boards"
+      401:
+        description: Authorization information is missing or invalid.
+      500:
+        description: "Internal error"
+
+    post:
+      tags:
+        - Board
+      description: This should create a new board with entered credentials
+      summary: Creating a new board
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: Board
+          description: Request body parameter
+          required: true
+          schema:
+            $ref: "#/definitions/Board"
+      responses:
+      200:
+        description: "Returns the created board object"
+      401:
+        description: Authorization information is missing or invalid.
+      500:
+        description: "Internal error"
+
+  /boards/{id}:
+    put:
+      tags:
+        - Board
+      description: This should update a existing board with help of a board id
+      summary: Update a existing board
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: connected to a specific todo
+          required: true
+        - in: body
+          name: Board
+          description: Request body parameter
+          required: true
+          schema:
+            $ref: "#/definitions/Board"
+      responses:
+      200:
+        description: "Returns the updated board object"
+      401:
+        description: Authorization information is missing or invalid.
+      500:
+        description: "Internal error"
+
+    delete:
+      tags:
+        - Board
+      description: This should delete a existing board with help of a board id
+      summary: Delete a existing board
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: Connected to a specific board
+          required: true
+      responses:
+      200:
+        description: "Returns the deleted board object"
+      401:
+        description: Authorization information is missing or invalid.
+      500:
+        description: "Internal error"
+
+  /boards/{id}/todos:
+    get:
+      tags:
+        - Board
+      description: This should get all existing todos for a specific board
+      summary: Get all todos for a specific board
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: Connected to a specific board
+          required: true
+      responses:
+      200:
+        description: "Returns a array of all todos for the specific board"
+      401:
+        description: Authorization information is missing or invalid.
+      500:
+        description: "Internal error"
+
+    post:
+      tags:
+        - Board
+      description: This should create a new todo for a specific board
+      summary: Create a new todo for a specific board
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: Connected to a specific board
+          required: true
+        - in: body
+          name: Todo
+          description: Request body parameter
+          required: true
+          schema:
+            $ref: "#/definitions/Todo"
+      responses:
+      200:
+        description: "Returns a array of all todos for the specific board"
+      401:
+        description: Authorization information is missing or invalid.
+      500:
+        description: "Internal error"
+
+definitions: # Schema definition for Board request body
+  Board:
+    type: object
+    properties:
+      title:
+        type: string
+        required: true
+      description:
+        type: string
+
+  Todo:
+    type: object
+    properties:
+      title:
+        type: string
+        required: true
+      description:
+        type: string
+        required: true
+      done:
+        type: boolean
+        required: true
+      metadata:
+        type: object
+        required: true
+      laneId:
+        type: string
+        required: true
+      boardId:
+        type: string
+        required: true

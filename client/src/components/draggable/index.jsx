@@ -138,6 +138,7 @@ const Draggable = ({ boardId }) => {
         onCardClick={handleCardClick}
         onCardMoveAcrossLanes={handleUpdateStatus}
         eventBusHandle={handleEventBus}
+        // canAddLanes={true}
       />
       {isShowing && (
         <Modal

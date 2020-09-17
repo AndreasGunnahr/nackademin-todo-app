@@ -7,33 +7,37 @@ paths:
     get:
       tags:
         - Todo
-      description: This should return all todos
-      summary: Get all todos
+      description: This should return all todos connected to a specfic user and board
+      summary: Get all a existing todos
       produces:
         - application/json
       responses:
         200:
           description: "Returns multiples todos objects"
+        401:
+          description: Authorization information is missing or invalid.
         500:
           description: "Internal error"
 
     post:
       tags:
         - Todo
-      description: This should create a new todo
-      summary: Create todo
+      description: This should create a new todo with entered credentials
+      summary: Create a new todo
       produces:
         - application/json
       parameters:
         - in: body
           name: Todo
-          description: request body parameters
+          description: Request body parameters
           required: true
           schema:
             $ref: "#/definitions/Todo"
       responses:
         200:
           description: "An object with our created todo"
+        401:
+          description: Authorization information is missing or invalid.
         500:
           description: "Internal error"
 
@@ -41,8 +45,8 @@ paths:
     put:
       tags:
         - Todo
-      description: This should update a existing todo
-      summary: Update todo
+      description: This should update a existing todo with help of todo id.
+      summary: Update a existing todo
       produces:
         - application/json
       parameters:
@@ -52,31 +56,35 @@ paths:
           required: true
         - in: body
           name: Todo
-          description: request body parameter
+          description: Request body parameter
           required: true
           schema:
             $ref: "#/definitions/Todo"
       responses:
         200:
           description: "An object with our updated todo"
+        401:
+          description: Authorization information is missing or invalid.
         500:
           description: "Internal error"
 
     delete:
       tags:
         - Todo
-      description: This should delete a todo
-      summary: Delete todo
+      description: This should delete a todo with help of todo id.
+      summary: Delete a existing todo
       produces:
         - application/json
       parameters:
         - in: path
           name: id
-          description: connected to a specific todo
+          description: Connected to a specific todo
           required: true
       responses:
         200:
           description: "Number of deleted records"
+        401:
+          description: Authorization information is missing or invalid.
         500:
           description: "Internal error"
 
@@ -84,16 +92,21 @@ definitions: # Schema definition for request body
   Todo:
     type: object
     properties:
-      todo:
+      title:
+        type: string
+        required: true
+      description:
+        type: string
+        required: true
+      done:
+        type: boolean
+        required: true
+      metadata:
         type: object
-        properties:
-          title:
-            type: string
-          description:
-            type: string
-          done:
-            type: string
-          metadata:
-            type: object
-          laneId:
-            type: string
+        required: true
+      laneId:
+        type: string
+        required: true
+      boardId:
+        type: string
+        required: true

@@ -64,7 +64,6 @@ UserSchema.statics.findByUserId = function (id) {
   return this.findById(id);
 };
 
-//- TODO: CHECK IF PASSWORD AND RE-PASSWORD IS THE SAME IN FRONTEND!
 UserSchema.statics.register = async function (user) {
   const newUser = new this(user);
   const createdUser = await newUser.save();

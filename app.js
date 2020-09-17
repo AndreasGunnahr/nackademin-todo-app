@@ -6,7 +6,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
-const { swaggerUi, swaggerDocs } = require("./swaggerDoc");
+const { swaggerUi, swaggerDocs, specOptions } = require("./swaggerDoc");
 
 // IMPORT OF MIDDLEWARE
 const handleErrors = require("./middlewares/handleErrors");
@@ -27,7 +27,11 @@ const authRoutes = require("./routes/auth");
 const boardRoutes = require("./routes/board");
 const adminRoutes = require("./routes/admin");
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocs, specOptions)
+);
 app.use("/api/todos", todoRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);

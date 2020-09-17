@@ -1,0 +1,56 @@
+tags:
+  - name: Auth
+    description: Everything about our authentication.
+
+paths:
+  /auth/login:
+    get:
+      tags:
+        - Auth
+      description: This should check if the user entered valid login credentials
+      summary: Login in a existing user
+      produces:
+        - application/json
+      responses:
+      200:
+        description: "Returns a object with our user information and a token"
+      401:
+        description: "Username or password is incorrect"
+      500:
+        description: "Internal error"
+
+  /auth/register:
+    get:
+      tags:
+        - Auth
+      description: This should register a new user with entered credentials
+      summary: Register a new user
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: User
+          description: Request body parameter
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+      200:
+        description: "Returns logged in user and a active JWT token"
+      401:
+        description: "Unsuccessful registration"
+      500:
+        description: "Internal error"
+
+definitions: # Schema definition for register request body
+  User:
+    type: object
+    properties:
+      username:
+        type: string
+      email:
+        type: string
+      role:
+        type: string
+      password:
+        type: string
