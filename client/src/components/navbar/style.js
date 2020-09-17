@@ -1,5 +1,11 @@
 import styled from "styled-components";
-import { FlexRow, LinkButton, Button, headerFont } from "components/shared";
+import {
+  FlexRow,
+  LinkButton,
+  Button,
+  headerFont,
+  textFont,
+} from "components/shared";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const NavContainer = styled.nav`
@@ -51,8 +57,15 @@ export const Link = styled(LinkButton)`
   }
 `;
 
-export const Logo = styled(Link)`
-  font-size: 2.5rem;
+export const Logo = styled(LinkButton)`
+  ${headerFont}
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 900;
+  letter-spacing: 3px;
+  border-bottom: 2px solid;
+  border-radius: 0;
   color: ${({ theme }) => theme.color.white};
   margin: 0;
   @media (max-width: 600px) {

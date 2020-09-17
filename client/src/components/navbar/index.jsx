@@ -11,11 +11,7 @@ import {
   Logo,
   SignOutButton,
 } from "./style";
-import {
-  // faInbox,
-  faNewspaper,
-  faChartLine,
-} from "@fortawesome/free-solid-svg-icons";
+import { faNewspaper, faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { faMicrosoft } from "@fortawesome/free-brands-svg-icons";
 
 import { useAuthContext } from "store/authContext";
@@ -27,7 +23,7 @@ const Navbar = () => {
 
   return (
     <NavContainer>
-      <Logo to="/">LOGO</Logo>
+      <Logo to="/">Plan&Create</Logo>
       <Hamburger open={open} setOpen={setOpen} />
       {isAuthenticated ? (
         <>
