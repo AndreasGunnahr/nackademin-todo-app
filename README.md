@@ -1,9 +1,9 @@
-[![Contributors][contributors-shield]][https://github.com/andreasgunnahr/nackademin-todo-app/graphs/contributors]
-[![Forks][forks-shield]][https://github.com/andreasgunnahr/nackademin-todo-app/network/members]
-[![Stargazers][stars-shield]][https://github.com/andreasgunnahr/nackademin-todo-app/stargazers]
-[![Issues][issues-shield]][https://github.com/andreasgunnahr/nackademin-todo-app/issues]
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][https://www.linkedin.com/in/andreas-gunnahr-8310a8129/]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -179,15 +179,16 @@ Project Link: [https://github.com/andreasgunnahr/nackademin-todo-app/](https://g
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[contributors-url]: https://github.com/andreasgunnahr/nackademin-todo-app/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=flat-square
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[forks-url]: https://github.com/andreasgunnahr/nackademin-todo-app/network/members
 [stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=flat-square
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[stars-url]: https://github.com/andreasgunnahr/nackademin-todo-app/stargazers
 [issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
+[issues-url]: https://github.com/andreasgunnahr/nackademin-todo-app/issues
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[license-url]: ""
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
+[linkedin-url]: https://www.linkedin.com/in/andreas-gunnahr-8310a8129
+
+<!-- [product-screenshot]: images/screenshot.png -->
