@@ -23,6 +23,10 @@ const RegisterForm = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    if (!enteredUser)
+      return setError("Please enter valid information in all fields");
+    if (enteredUser.password !== enteredUser.rePassword)
+      return setError("Passwords don't match!");
     const response = await fetch("/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

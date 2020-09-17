@@ -62,10 +62,10 @@ export const ActionButton = styled(LinkButton)`
   @media (max-width: 1440px) {
     width: 400px;
     padding: 1.5rem 0;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
   }
   @media (max-width: 1101px) {
-    padding: 1.25rem 0;
+    padding: 1rem 0;
     width: 100%;
   }
 `;

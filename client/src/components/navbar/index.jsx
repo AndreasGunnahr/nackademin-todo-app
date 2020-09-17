@@ -28,14 +28,10 @@ const Navbar = () => {
   return (
     <NavContainer>
       <Logo to="/">LOGO</Logo>
-      <Hamburger open={open} setOpen={setOpen} />
+      {/* <Hamburger open={open} setOpen={setOpen} /> */}
       {isAuthenticated ? (
         <>
           <AuthWrapper>
-            {/* <Link to="/">
-              <Icon icon={faInbox} />
-              Backlog
-            </Link> */}
             <Link to="/boards">
               <Icon icon={faMicrosoft} />
               Boards
