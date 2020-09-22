@@ -2,7 +2,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+[![License: MIT][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
@@ -186,7 +186,7 @@ Project Link: [https://github.com/andreasgunnahr/nackademin-todo-app/](https://g
 [stars-url]: https://github.com/andreasgunnahr/nackademin-todo-app/stargazers
 [issues-shield]: https://img.shields.io/github/issues/AndreasGunnahr/nackademin-todo-app.svg?style=flat-square
 [issues-url]: https://github.com/andreasgunnahr/nackademin-todo-app/issues
-[license-shield]: https://img.shields.io/github/license/AndreasGunnahr/nackademin-todo-app.svg?style=flat-square
+[license-shield]: https://img.shields.io/badge/License-MIT-yellow.svg
 [license-url]: https://opensource.org/licenses/MIT
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/andreas-gunnahr-8310a8129
