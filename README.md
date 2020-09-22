@@ -187,7 +187,7 @@ Project Link: [https://github.com/andreasgunnahr/nackademin-todo-app/](https://g
 [issues-shield]: https://img.shields.io/github/issues/AndreasGunnahr/nackademin-todo-app.svg?style=flat-square
 [issues-url]: https://github.com/andreasgunnahr/nackademin-todo-app/issues
 [license-shield]: https://img.shields.io/github/license/AndreasGunnahr/nackademin-todo-app.svg?style=flat-square
-[license-url]: ""
+[license-url]: https://github.com/andreasgunnahr/nackademin-todo-app/blob/master/LICENSE.md
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/andreas-gunnahr-8310a8129
 
